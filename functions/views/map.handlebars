@@ -1,0 +1,140 @@
+<div class="container">
+   <div id="searchGroup" style="padding-left: 25%; padding-right: 25%;" class="input-group mt-2">
+      <label class="sr-only" for="address">Address</label>
+      <input type="text" id="mapInput" style="height: 50px;" class="form-control pl-2" value="{{map}}">
+      <button id="submit" class="btn btn-success ml-2 pr-2" style="height: 50px;" type="button">Go!</button>
+   </div>
+</div>
+<div id="map" class="mb-4" style="height: 550px;"></div>
+<div class="container">
+   <div id="mealSelected"></div>
+</div>
+</div>
+
+
+<script>
+   var marker;
+   function initMap() {
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+         zoom: 14,
+         center: { lat: 45.492692, lng: -73.568552 }, // Downtown montreal coordinate
+         styles: [
+            {
+               featureType: "poi",
+               stylers: [
+                  { visibility: "off" }
+               ]
+            }
+         ]
+      });
+
+      var card = document.getElementById('searchGroup');
+      var input = document.getElementById('mapInput');
+
+      map.controls[google.maps.ControlPosition.TOP_CENTER].push(card);
+
+      var autocomplete = new google.maps.places.Autocomplete(input);
+
+      // Bind the map's bounds (viewport) property to the autocomplete object,
+      // so that the autocomplete requests use the current map bounds for the
+      // bounds option in the request.
+      autocomplete.bindTo('bounds', map);
+
+      marker = new google.maps.Marker({
+         map: map,
+         anchorPoint: new google.maps.Point(0, -29)
+      });
+
+      var geocoder = new google.maps.Geocoder();
+      geocodeAddress(geocoder, map);
+
+      autocomplete.addListener('place_changed', function () {
+         marker.setVisible(false);
+         var place = autocomplete.getPlace();
+         if (!place.geometry) {
+            // User entered the name of a Place that was not suggested and
+            // pressed the Enter key, or the Place Details request failed.
+            window.alert("No details available for input: '" + place.name + "'");
+            return;
+         }
+
+         // If the place has a geometry, then present it on a map.
+         if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+         } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(14);
+         }
+         marker.setPosition(place.geometry.location);
+         marker.setVisible(true);
+
+         var address = '';
+         if (place.address_components) {
+            address = [
+               (place.address_components[0] && place.address_components[0].short_name || ''),
+               (place.address_components[1] && place.address_components[1].short_name || ''),
+               (place.address_components[2] && place.address_components[2].short_name || '')
+            ].join(' ');
+         }
+      });
+
+
+      var decodedJson = decodeURIComponent("{{{mealsOnline}}}");
+      var mealsOnline = JSON.parse(decodedJson);
+
+      mealsOnline.forEach(function (meal) {
+         geocoder.geocode({ 'address': meal.address }, function (results, status) {
+            if (status === 'OK') {
+               var mealMarker = new google.maps.Marker({
+                  map: map,
+                  position: results[0].geometry.location,
+                  url: '/' + meal.name,
+                  icon: {
+                     url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                     labelOrigin: new google.maps.Point(75, 32),
+                     size: new google.maps.Size(32, 32),
+                     anchor: new google.maps.Point(16, 32)
+                  },
+                  label: {
+                     text: meal.name,
+                     color: "#C70E20",
+                     fontWeight: "bold"
+                  }
+               });
+               mealMarker.addListener('click', function () {
+                  document.getElementById("mealSelected").innerHTML =
+                     '<div class="row mt-3">' +
+                     '<div class="col-md-6">' +
+                     '<img src="' + meal.image + '" class="img-fluid rounded" alt="Selected meal">' +
+                     '</div>' +
+                     '<div class="col-md-6">' +
+                     '<h3 id="mealName">' + meal.name + '</h3>' +
+                     '<p class="text-muted">' + meal.description + '</p>' +
+                     '<span style="font-size: 20px"class="pt-1 text-secondary">Price: <strong id="mealPrice">' + meal.price + '</strong></span><a href="/add-to-cart/' + meal.id + '/1" class="btn btn-success float-right">Add to cart</a>';
+               });
+            } else {
+               alert('1-Geocode was not successful for the following reason: ' + status);
+            }
+         });
+      });
+   }
+
+   function geocodeAddress(geocoder, resultsMap) {
+      var address = document.getElementById('mapInput').value;
+      geocoder.geocode({ 'address': address }, function (results, status) {
+         if (status === 'OK') {
+            resultsMap.setCenter(results[0].geometry.location);
+            marker = new google.maps.Marker({
+               map: resultsMap,
+               position: results[0].geometry.location
+            });
+         } else {
+            alert('2-Geocode was not successful for the following reason: ' + status);
+         }
+      });
+   }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyr9N9vQxtrwcuk_CeZfR3Kg1H53Bvw_4&libraries=places&callback=initMap"
+   async defer></script>

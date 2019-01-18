@@ -1,0 +1,49 @@
+[debug] [2018-11-24T20:12:14.695Z] ----------------------------------------------------------------------
+[debug] [2018-11-24T20:12:14.697Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve --only hosting,functions
+[debug] [2018-11-24T20:12:14.697Z] CLI Version:   6.0.1
+[debug] [2018-11-24T20:12:14.697Z] Platform:      linux
+[debug] [2018-11-24T20:12:14.697Z] Node Version:  v8.8.0
+[debug] [2018-11-24T20:12:14.697Z] Time:          Sat Nov 24 2018 15:12:14 GMT-0500 (STD)
+[debug] [2018-11-24T20:12:14.697Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-11-24T20:12:14.706Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-11-24T20:12:14.707Z] > authorizing via signed-in user
+[debug] [2018-11-24T20:12:14.707Z] [iam] checking project wannaeat-4fa78 for permissions ["firebase.projects.get"]
+[debug] [2018-11-24T20:12:14.709Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/wannaeat-4fa78:testIamPermissions  
+
+[debug] [2018-11-24T20:12:14.981Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-24T20:12:14.982Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/wannaeat-4fa78  
+ 
+[debug] [2018-11-24T20:12:15.220Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/mnt/c/Users/jmppr/Desktop/wanna-eat'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-11-24T20:12:15.792Z] Fetching environment
+[debug] [2018-11-24T20:12:15.796Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/420513735815:getServerAppConfig  
+ 
+[debug] [2018-11-24T20:12:15.796Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/420513735815/clients/_:getWebAppConfig  
+ 
+[debug] [2018-11-24T20:12:16.007Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-24T20:12:16.008Z] Starting @google-cloud/functions-emulator
+[debug] [2018-11-24T20:12:16.056Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+[debug] [2018-11-24T20:12:17.565Z] Parsing function triggers
+[info] [hosting] Rewriting / to local function app
+[info] ✔  functions: app: http://localhost:5001/wannaeat-4fa78/us-central1/app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /cart to local function app
+[info] [hosting] Rewriting /update-cart/Q8RcQMtdx04QnDIDXPbD to local function app
+[info] [hosting] Rewriting /cart to local function app
+[info] [hosting] Rewriting /delete-cart/Q8RcQMtdx04QnDIDXPbD to local function app
+[info] [hosting] Rewriting /cart to local function app
+[info] [hosting] Rewriting /map/Montreal to local function app
+[info] [hosting] Rewriting /cart to local function app
+[info] [hosting] Rewriting /update-cart/Q8RcQMtdx04QnDIDXPbD to local function app
+[info] [hosting] Rewriting /cart to local function app
+[info] [hosting] Rewriting /update-cart/Q8RcQMtdx04QnDIDXPbD to local function app
+[info] [hosting] Rewriting /cart to local function app
+[info] [hosting] Rewriting /update-cart/Q8RcQMtdx04QnDIDXPbD to local function app
+[info] [hosting] Rewriting /cart to local function app
+[info] [hosting] Rewriting /historic to local function app

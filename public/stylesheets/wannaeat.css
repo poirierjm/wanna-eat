@@ -1,0 +1,97 @@
+.form-signin {
+  max-width: 400px;
+  padding: 10px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.btn-google {
+  color: white;
+  background-color: #ea4335;
+}
+
+.avatar {
+  position: relative;
+  top: -4px;
+  float: left;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+a.notification-bell:link {
+  color: rgb(180, 180, 180)
+}
+
+a.notification-bell:visited {
+  color: rgb(180, 180, 180)
+}
+
+a.notification-bell:hover {
+  color: #ffffff
+}
+
+.avatar-menu {
+  width: 200px;
+  height: 200px;
+}
+
+img.offline-meal {
+  -webkit-filter: grayscale(70%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(70%);
+  opacity: 0.65;
+  filter: alpha(opacity=65); /* For IE8 and earlier */
+}
+
+a.card-meal:link {
+  color: black;
+  text-decoration: none;
+}
+
+a.card-meal:visited {
+  color: black;
+  text-decoration: none;
+}
+
+a.card-meal:hover {
+  color: black;
+  text-decoration: none;
+}
+
+
+a.order:link {
+  color: black;
+  text-decoration: none;
+}
+
+a.order:visited {
+  color: black;
+  text-decoration: none;
+}
+
+a.order:hover {
+  color: black;
+  text-decoration: none;
+}

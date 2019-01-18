@@ -1,0 +1,64 @@
+<link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+<div class="container">
+
+   <div class="alert alert-warning my-3" role="alert">
+      Rouge = commandes refusées | Vert = commandes acceptées <br>
+      Le nombre à côté de la notification bell dans la barre de navigation est égal au nombre de commandes pas
+      encore
+      acceptées ou refusée!
+   </div>
+
+   <h2 class="mt-5">Commandes</h2>
+   <hr class="divider">
+
+   <table id="table-order" class="table table-hover mt-3" style="width:100%">
+      <thead>
+         <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Meal</th>
+            <th>Portion</th>
+            <th>Income</th>
+            <th>Date</th>
+            <th style="width: 35px;"> </th>
+         </tr>
+      </thead>
+      <tbody>
+         {{#each orders}}
+         {{#equal ready false }}
+         <tr class="table-info">
+         {{else}}
+         <tr>
+         {{/equal}}
+            <td>{{recipient_name}}</td>
+            <td>{{line1}}, {{city}}, {{state}}, {{postal_code}}</td>
+            <td>450-777-8888</td>
+            <td>{{mealName}}</td>
+            <td>{{quantity}}</td>
+            <td>${{total}}</td>
+            <td>{{date}}</td>
+            {{#equal ready false }}
+            <td><a href="/order-complete/{{id}}" class="order"><i class="far fa-check-circle fa-lg" title="Order is complete"></i></a>
+               <a href="#" class="order"><i class="fas fa-minus-circle fa-lg ml-1" title="Refund order"></i></a>
+            </td>
+            {{else}}
+            <td></td>
+            {{/equal}}
+         </tr>
+         {{/each}}
+      </tbody>
+   </table>
+</div>
+
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+   $(document).ready(function () {
+      $('#table-order').DataTable({
+         "order": [[ 6, "desc" ]] // Trier par la date
+      });
+   });
+</script>

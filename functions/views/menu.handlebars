@@ -1,0 +1,84 @@
+<div class="container">
+
+   <h2 class="mt-5">Menu</h2>
+   <hr class="divider">
+
+   <div class="row">
+      <div class="col-md-4">
+         <img src="{{ user.picture }}" alt="Google avatar" class="avatar-menu img-fluid rounded-circle" />
+      </div>
+      <div class="col-md-8">
+         <div class="card bg-light mb-3" style="max-width: 18rem;">
+            {{!-- <div class="card-header">Header</div> --}}
+            <div class="card-body">
+               <h5 class="card-title">Light card title</h5>
+               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <h3 class="mt-4">Online Meal</h3>
+   <hr class="divider">
+
+   {{#if mealsOnline}}
+   <div class="row">
+      {{#each mealsOnline}}
+      <div class="col-md-4 col-sm-6 col-lg-4 my-2">
+         <a href="/meal/{{id}}" class="card-meal">
+            <div class="card border-0">
+               <img class="card-img-top" src="{{image}}" alt="Meal Image">
+               <div class="px-1 py-2">
+                  <span class="card-text font-weight-bold">{{name}}</span>
+                  <div class="d-flex">
+                     <div>
+                        <small>Portion left: <span class="font-weight-bold">{{portion}}</span></small>
+                     </div>
+                     <div class="ml-auto">
+                        <small>Price: <span class="font-weight-bold">${{price}}</span></small>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </a>
+      </div>
+      {{/each}}
+   </div>
+   {{else}}
+   <h6>No online meal at the moment</h6>
+   {{/if}}
+
+   <h3 class="mt-4">Offline Meal</h3>
+   <hr class="divider">
+
+   {{#if mealsOffline}}
+   <div class="row">
+      {{#each mealsOffline}}
+      <div class="col-md-4 col-sm-6 col-lg-4 my-2">
+         <a href="/meal/{{id}}" class="card-meal">
+            <div class="card border-0">
+               <img class="card-img-top offline-meal" src="{{image}}" alt="Meal Image">
+               <div class="px-1 py-2">
+                  <span class="card-text font-weight-bold">{{name}}</span>
+                  <div class="d-flex">
+                     <div>
+                        <small>Portion left: <span class="font-weight-bold">0</span></small>
+                     </div>
+                     <div class="ml-auto">
+                        <small>Price: <span class="font-weight-bold">${{price}}</span></small>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </a>
+      </div>
+      {{/each}}
+   </div>
+   {{else}}
+   <h6>No offline meal at the moment</h6>
+   {{/if}}
+
+   <a role="button" href="/meal" class="btn btn-success btn-lg my-3 float-right">Add Meal</a>
+
+</div>

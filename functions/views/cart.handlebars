@@ -1,0 +1,92 @@
+<section class="jumbotron text-center">
+   <div class="container">
+      <h1 class="jumbotron-heading">WANNA EAT CART</h1>
+   </div>
+</section>
+
+<div class="container mb-4">
+   {{#if cart}}
+
+   <div class="table-responsive">
+      <table class="table table-striped">
+         <thead>
+            <tr>
+               <th style="width: 40%;" scope="col">Image</th>
+               <th style="width: 25%;" scope="col">Product</th>
+               <th style="width: 10%;" scope="col" class="text-center">Quantity</th>
+               <th style="width: 10%;" scope="col" class="text-right">Price</th>
+               <th style="width: 15%;"> </th>
+            </tr>
+         </thead>
+         <tbody>
+            {{#each cart}}
+            <tr>
+               <form class="needs-validation" action="/update-cart/{{ id }}" method="post">
+
+                  <td style="width: 40%;">
+                     <img src="{{ image }}" alt="Meal" class="img-fluid rounded">
+                  </td>
+                  <td style="width: 25%;">{{ name }}</td>
+                  <td style="width: 10%;">
+                     <input class="form-control" type="hidden" id="mealId" name="mealId" value="{{ id }}" />
+                     <input class="form-control text-center" type="text" id="mealQty" name="mealQty" value="{{ portionToBuy }}" style="100%" />
+                  </td>
+                  <td style="width: 10%;" class="text-right">{{ priceTotal }}</td>
+                  <td style="width: 15%;" class="text-right">
+                     <a role="button" href="/delete-cart/{{ id }}" class="btn btn-sm btn-danger">
+                        <i class="far fa-trash-alt"></i>
+                     </a>
+                  </td>
+                  <td style="width: 15%;" class="text-right">
+                     <button class="btn btn-success" type="submit">Update</button>
+                  </td>
+               </form>
+            </tr>
+            {{/each}}
+            <tr>
+               <td style="width: 40%;"></td>
+               <td style="width: 25%;"></td>
+               <td style="width: 20%;" colspan="2">Sub-Total</td>
+               <td style="width: 15%;" class="text-right">{{ subtotal }}</td>
+            </tr>
+            <tr>
+               <td style="width: 40%;"></td>
+               <td style="width: 25%;"></td>
+               <td style="width: 20%;" colspan="2">Shipping</td>
+               <td style="width: 15%;" class="text-right">{{ shipping }}</td>
+            </tr>
+            <tr>
+               <td style="width: 40%;"></td>
+               <td style="width: 25%;"></td>
+               <td style="width: 20%;" colspan="2">
+                  <strong>Total</strong>
+               </td>
+               <td style="width: 15%;" class="text-right">
+                  <strong>{{ total }}</strong>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+
+   <div class="row mb-2">
+      <div class="col-sm-12  col-md-6">
+         <a role="button" href="/map/Montreal" class="btn btn-lg btn-block btn-light">Continue Shopping</a>
+      </div>
+      <div class="col-sm-12 col-md-6">
+         <a href="/pay" class="btn btn-lg btn-block btn-success text-uppercase" role="button">Checkout</a>
+      </div>
+   </div>
+   </form>
+
+
+   {{else}}
+   <div class="text-center">
+      <h4>Your cart is empty! </h4>
+      <h3>
+         <a href="/map/Montreal">Go shop here</a>
+      </h3>
+   </div>
+   {{/if}}
+
+</div>

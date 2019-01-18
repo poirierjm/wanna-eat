@@ -1,0 +1,136 @@
+<div class="container">
+
+   <div class="my-3">
+      <div class="alert alert-warning alert-dismissible">
+         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+         <strong>Warning!</strong> All information below must be valid to access to the creation menu page.
+      </div>
+   </div>
+
+   <h2 class="mt-5">Address information</h2>
+   <hr class="divider">
+   <form class="needs-validation" action="/create-cook" method="post" novalidate>
+      <div class="row">
+         <div class="col-md-6 mb-3">
+            <label for="name">Nom</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="" value="{{userdb.displayName}}"
+               required>
+            <div class="invalid-feedback">
+               Valid name is required.
+            </div>
+         </div>
+         <div class="col-md-6 mb-3">
+            <label for="email">Courriel</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="" value="{{userdb.email}}"
+               disabled>
+            <div class="invalid-feedback">
+               Please enter a valid email address for shipping updates.
+            </div>
+         </div>
+      </div>
+      <div class="mb-3">
+         <label for="address">Address</label>
+         <input type="text" class="form-control" id="address" name="address" placeholder="1234 Main St" value="{{userdb.address}}"
+            required>
+         <div class="invalid-feedback">
+            Please enter your shipping address.
+         </div>
+      </div>
+      <div class="mb-3">
+         <label for="city">City</label>
+         <input type="text" class="form-control" id="city" name="city" placeholder="Montreal" value="{{userdb.city}}"
+            required>
+         <div class="invalid-feedback">
+            Please enter your city.
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-5 mb-3">
+            <label for="country">Country</label>
+            <select class="custom-select d-block w-100" id="country" name="country" required>
+               <option value="">Choose...</option>
+               <option value="United States">United States</option>
+               <option value="Canada">Canada</option>
+            </select>
+            <div class="invalid-feedback">
+               Please select a valid country.
+            </div>
+         </div>
+         <div class="col-md-4 mb-3">
+            <label for="state">State</label>
+            <select class="custom-select d-block w-100" id="state" name="state" required>
+               <option value="">Choose...</option>
+               <option>California</option>
+            </select>
+            <div class="invalid-feedback">
+               Please provide a valid state.
+            </div>
+         </div>
+         <div class="col-md-3 mb-3">
+            <label for="zip">Zip</label>
+            <input type="text" class="form-control" id="zip" name="zip" placeholder="" value="{{userdb.zip}}" required>
+            <div class="invalid-feedback">
+               Zip code required.
+            </div>
+         </div>
+      </div>
+      <div class="mb-3">
+         <label for="paypal">Paypal</label>
+         <input type="email" class="form-control" id="city" name="paypal" placeholder="bob@mail.com" value="{{userdb.paypal}}"
+            required>
+         <div class="invalid-feedback">
+            Please enter a valid paypal email.
+         </div>
+      </div>
+
+
+      <hr class="mb-4">
+      <button class="btn btn-success btn-lg btn-block" type="submit">Continue</button>
+   </form>
+
+</div>
+<input type="hidden" id="country2" value="{{userdb.country}}">
+<input type="hidden" id="state2" value="{{userdb.state}}">
+
+<script>
+   addSelected1();
+   function addSelected1() {
+      var country = document.getElementById('country2').value;
+      var state = document.getElementById('state2').value;
+      var countries = document.getElementById('country').options;
+      var states = document.getElementById('state').options;
+      addSelected(countries, country);
+      addSelected(states, state);
+   }
+
+   function addSelected(options, object) {
+      for (var i = 0; i < options.length; i++) {
+         option = options[i];
+         if (option.value === object) {
+            option.setAttribute('selected', true);
+         }
+      }
+   }
+
+
+   // Example starter JavaScript for disabling form submissions if there are invalid fields
+   (function () {
+      'use strict';
+
+      window.addEventListener('load', function () {
+         // Fetch all the forms we want to apply custom Bootstrap validation styles to
+         var forms = document.getElementsByClassName('needs-validation');
+
+         // Loop over them and prevent submission
+         var validation = Array.prototype.filter.call(forms, function (form) {
+            form.addEventListener('submit', function (event) {
+               if (form.checkValidity() === false) {
+                  event.preventDefault();
+                  event.stopPropagation();
+               }
+               form.classList.add('was-validated');
+            }, false);
+         });
+      }, false);
+   })();
+</script>

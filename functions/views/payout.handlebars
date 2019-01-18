@@ -1,0 +1,170 @@
+<link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+<div class="container">
+
+   <div class="alert alert-primary alert-dismissible fade show my-3" role="alert">
+      <strong>Info!</strong> Payout are every monday.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+
+   <h2 class="mt-5">Payout</h2>
+   <hr class="divider">
+
+   <div class="row mt-3">
+      <div class="col-12">
+         <div class="card">
+            <div class="card-body text-center">
+               <h5 class="card-title">Next payout amount</h5>
+               <span class="h1 card-text">$398.54</span>
+               <p class="card-text">
+                  <small class="text-muted">Payment will be send to your paypal email :
+                     test@hotmail.com</small>
+               </p>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+
+   <div class="card-deck mt-3">
+      <div class="card">
+         <div class="card-body">
+            <h5 class="card-title">Earnings Today's </h5>
+            <span class="h2 card-text">$42.54</span>
+            <span class="h3 float-right text-danger" data-toggle="tooltip" data-placement="top" title="Compared to yesterday">&#8595;
+               24%</span>
+         </div>
+      </div>
+      <div class="card">
+         <div class="card-body">
+            <h5 class="card-title">Earnings this Week</h5>
+            <span class="h2 card-text">$492.30</span>
+            <span class="h3 float-right text-success" data-toggle="tooltip" data-placement="top" title="Compared to the previous week">&#8593;
+               4%</span>
+         </div>
+      </div>
+      <div class="card">
+         <div class="card-body">
+            <h5 class="card-title">Earnings this Month</h5>
+            <span class="h2 card-text">$1,098.54</span>
+            <span class="h3 float-right text-success" data-toggle="tooltip" data-placement="top" title="Compared to the previous month">&#8593;
+               38%</span>
+         </div>
+      </div>
+   </div>
+
+   <h3 class="mt-5">Historique des commandes</h3>
+   <hr class="divider">
+
+   <table id="table-payout" class="table table-hover mt-3" style="width:100%">
+      <thead>
+         <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Meal</th>
+            <th>Portion</th>
+            <th>Income</th>
+            <th>Date</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
+            <td>Paul Poirier</td>
+            <td>108 rue des abeilles, Coteau-du-Lac, QC, J0P 1B0</td>
+            <td>450-777-8888</td>
+            <td>Lasagne</td>
+            <td>1</td>
+            <td>$9.99</td>
+            <td>2018-10-28 23:49</td>
+         </tr>
+         <tr>
+            <td>JM Poirier</td>
+            <td>108 rue des abeilles, Coteau-du-Lac, QC, J0P 1B0</td>
+            <td>450-777-8888</td>
+            <td>Lasagne</td>
+            <td>2</td>
+            <td>$18.98</td>
+            <td>2018-10-28 23:49</td>
+         </tr>
+         <tr>
+            <td>Antoine Poirier</td>
+            <td>108 rue des abeilles, Coteau-du-Lac, QC, J0P 1B0</td>
+            <td>450-777-8888</td>
+            <td>Lasagne</td>
+            <td>1</td>
+            <td>$9.99</td>
+            <td>2018-10-28 23:49</td>
+         </tr>
+         <tr>
+            <td>Gabriel Poirier</td>
+            <td>108 rue des abeilles, Coteau-du-Lac, QC, J0P 1B0</td>
+            <td>450-777-8888</td>
+            <td>Lasagne</td>
+            <td>1</td>
+            <td>$9.99</td>
+            <td>2018-10-28 23:49</td>
+         </tr>
+         <tr>
+            <td>JM Poirier</td>
+            <td>108 rue des abeilles, Coteau-du-Lac, QC, J0P 1B0</td>
+            <td>450-777-8888</td>
+            <td>Lasagne</td>
+            <td>1</td>
+            <td>$9.99</td>
+            <td>2018-10-28 23:49</td>
+         </tr>
+         <tr>
+            <td>JM Poirier</td>
+            <td>108 rue des abeilles, Coteau-du-Lac, QC, J0P 1B0</td>
+            <td>450-777-8888</td>
+            <td>Lasagne</td>
+            <td>1</td>
+            <td>$9.99</td>
+            <td>2018-10-28 23:49</td>
+         </tr>
+         <tr>
+            <td>JM Poirier</td>
+            <td>108 rue des abeilles, Coteau-du-Lac, QC, J0P 1B0</td>
+            <td>450-777-8888</td>
+            <td>Lasagne</td>
+            <td>1</td>
+            <td>$9.99</td>
+            <td>2018-10-28 23:49</td>
+         </tr>
+         <tr>
+            <td>JM Poirier</td>
+            <td>108 rue des abeilles, Coteau-du-Lac, QC, J0P 1B0</td>
+            <td>450-777-8888</td>
+            <td>Lasagne</td>
+            <td>1</td>
+            <td>$9.99</td>
+            <td>2018-10-28 23:49</td>
+         </tr>
+      </tbody>
+   </table>
+
+   <div class="row my-4">
+      <div class="col-12">
+         <div class="card text-white bg-dark">
+            <div class="card-body text-center">
+               <h4 class="card-title">All time earnings</h4>
+               <span class="h1 card-text">$10,402.54</span>
+            </div>
+         </div>
+      </div>
+   </div>
+
+</div>
+
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+   $(document).ready(function () {
+      $('#table-payout').DataTable();
+   });
+</script>

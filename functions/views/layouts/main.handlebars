@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <!-- <link rel="icon" href="../../../../favicon.ico"> -->
+
+   <title>Wanna Eat - Accueil</title>
+
+   <!-- Import and configure the Firebase SDK -->
+   <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
+   <!-- If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
+   {{!--
+   <script defer src="/__/firebase/5.5.7/firebase-app.js"></script>
+   <script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
+   <script defer src="/__/firebase/init.js"></script> --}}
+
+   <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-app.js"></script>
+
+   <!-- Add additional services that you want to use -->
+   <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-auth.js"></script>
+   <script>
+      // Initialize Firebase
+      // TODO: Replace with your project's customized code snippet
+      var config = {
+         apiKey: "AIzaSyAyr9N9vQxtrwcuk_CeZfR3Kg1H53Bvw_4",
+         authDomain: "wannaeat-4fa78.firebaseapp.com",
+         databaseURL: "https://wannaeat-4fa78.firebaseio.com",
+         projectId: "wannaeat-4fa78",
+         storageBucket: "wannaeat-4fa78.appspot.com",
+         messagingSenderId: "AAAAYeiSZIc:APA91bE1OasoThot3515vuVAQMp8XjYkH1OeMW5j8jDLeRPMTvti7PHYf7KTbW2SGFH_QvJr2uGj17vy09k5mHRhjhINKY9yqQ4FNLTzuhG5Fhk93wlQ24i7ssRfkF7FPmmngUxZbPun",
+      };
+      firebase.initializeApp(config);
+   </script>
+
+   <script>
+      var isAnonymous = false;
+      firebase.auth().onAuthStateChanged(function (user) {
+         if (user) {
+            // User is signed in.
+            isAnonymous = user.isAnonymous;
+            var uid = user.uid;
+            console.log("Anom : ", uid)
+         } else {
+            // If not signed in, sign in as anonymous. First time on the website.
+            firebase.auth().signInAnonymously().catch(function (error) {
+               var errorCode = error.code;
+               var errorMessage = error.message;
+               console.log("Error sign in: ", errorCode, errorMessage);
+            });
+         }
+      });
+
+      function checkCookie() {
+         // Checks if it's likely that there is a signed-in Firebase user and the session cookie expired.
+         // In that case we'll hide the body of the page until it will be reloaded after the cookie has been set.
+         var hasSessionCookie = document.cookie.indexOf('__session=') !== -1;
+         var isProbablySignedInFirebase = typeof Object.keys(localStorage).find(function (key) {
+            return key.startsWith('firebase:authUser')
+         }) !== 'undefined';
+         if (!hasSessionCookie && isProbablySignedInFirebase) {
+            var style = document.createElement('style');
+            style.id = '__bodyHider';
+            style.appendChild(document.createTextNode('body{display:none}'));
+            document.head.appendChild(style);
+         }
+      }
+      checkCookie();
+
+      document.addEventListener('DOMContentLoaded', function () {
+         firebase.auth().addAuthTokenListener(function (idToken) {
+            var hadSessionCookie = document.cookie.indexOf('__session=') !== -1;
+            document.cookie = '__session=' + idToken + ';max-age=' + (idToken ? 3600 : 0);
+            console.log(document.cookie);
+            // If there is a change in the auth state compared to what's in the session cookie we'll reload after setting the cookie.
+            if ((!hadSessionCookie && idToken && !isAnonymous) || (hadSessionCookie && !idToken && !isAnonymous) || (hadSessionCookie && idToken && isAnonymous)) {
+               window.location.reload(true);
+            } else {
+               // In the rare case where there was a user but it could not be signed in (for instance the account has been deleted).
+               // We un-hide the page body.
+               var style = document.getElementById('__bodyHider');
+               if (style) {
+                  document.head.removeChild(style);
+               }
+            }
+         });
+      });
+   </script>
+
+   <!-- Bootstrap core CSS -->
+   <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
+      crossorigin="anonymous">
+   <link href="/stylesheets/wannaeat.css" rel="stylesheet">
+</head>
+
+<body>
+   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="container">
+         <a class="navbar-brand" href="/">Wanna Eat</a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07"
+            aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+
+         <div class="collapse navbar-collapse" id="navbarsExample07">
+            <ul class="navbar-nav mr-auto">
+               <li class="nav-item active">
+                  <a class="nav-link" href="/">Home
+                     <span class="sr-only">(current)</span>
+                  </a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="/map/Montreal">Map</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#">Test1</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#">Test2</a>
+               </li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+                     aria-expanded="false">Test3</a>
+                  <div class="dropdown-menu" aria-labelledby="dropdown01">
+                     <a class="dropdown-item" href="#">Test4</a>
+                     <a class="dropdown-item" href="#">Test5</a>
+                     <a class="dropdown-item" href="#">Test6</a>
+                  </div>
+               </li>
+            </ul>
+            {{#if user.name}}
+            <ul class="navbar-nav ml-auto">
+               {{#equal mealsLength 0 }}
+               <li class="nav-item my-auto mr-2">
+                  <a href="/cart" class="notification-bell">
+                     <i class="fa fa-shopping-cart fa-lg"></i>
+                  </a>
+               </li>
+               {{else}}
+               <li class="nav-item my-auto mr-2">
+                  <span class="badge badge-pill badge-danger" style="float: right; margin-top: -10px;">{{mealsLength}}</span>
+                  <a href="/cart" class="notification-bell">
+                     <i class="fa fa-shopping-cart fa-lg"></i>
+                  </a>
+               </li>
+               {{/equal}} {{#if userdb.address}}
+               <li class="nav-item my-auto">
+                  <span class="badge badge-pill badge-danger" style="float: right; margin-top: -10px;">2</span>
+                  <a href="/order" class="notification-bell">
+                     <i class="far fa-bell fa-lg"></i>
+                  </a>
+               </li>
+               {{/if}}
+               <li class="nav-item dropdown" style="cursor: pointer;">
+                  <a class="nav-link dropdown-toggle" id="dropdown02" data-toggle="dropdown" aria-haspopup="true"
+                     aria-expanded="false">
+                     <img src="{{ user.picture }}" alt="Google avatar" class="avatar mr-2">
+                     <span class="">{{user.name}}</span>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="dropdown02">
+                     {{#if userdb.address}}
+                     <a class="dropdown-item" href="/menu">Menu</a>{{/if}} {{#if userdb.address}}
+                     <a class="dropdown-item" href="/order">Commande</a>{{/if}} {{#if userdb.address}}
+                     <a class="dropdown-item" href="/payout">Paiement</a>{{/if}} {{#if userdb.address}}
+                     <a class="dropdown-item" href="/user">Information</a>{{/if}}
+                     <a class="dropdown-item" href="/historic">Historique</a>
+                     <a class="dropdown-item" onclick="firebase.auth().signOut()" role="button">Déconnexion</a>
+                  </div>
+               </li>
+               {{#unless userdb.address}}
+               <li class="nav-item">
+                  <a href="/user" class="btn btn-outline-success" role="button">Devenez Cuisto</a>
+               </li>
+               {{/unless}}
+            </ul>
+            {{^}}
+            <ul class="navbar-nav ml-auto">
+               {{#equal mealsLength 0 }}
+               <li class="nav-item my-auto mr-2">
+                  <a href="/cart" class="notification-bell">
+                     <i class="fa fa-shopping-cart fa-lg"></i>
+                  </a>
+               </li>
+               {{else}}
+               <li class="nav-item my-auto mr-2">
+                  <span class="badge badge-pill badge-danger" style="float: right; margin-top: -10px;">{{mealsLength}}</span>
+                  <a href="/cart" class="notification-bell">
+                     <i class="fa fa-shopping-cart fa-lg"></i>
+                  </a>
+               </li>
+               {{/equal}}
+               <li class="nav-item">
+                  <a href="/login" class="btn btn-outline-light mr-2" role="button">Connexion</a>
+               </li>
+               <li class="nav-item">
+                  <a href="/user" class="btn btn-outline-success" role="button">Devenez Cuisto</a>
+               </li>
+            </ul>
+            {{/if}}
+
+         </div>
+      </div>
+   </nav>
+
+
+   {{!--
+   <main role="main">
+      <div class="jumbotron">
+         <div class="col-sm-8 mx-auto">
+            <h1>Navbar examples</h1>
+            <p>This example is a quick exercise to illustrate how the navbar and its contents work. Some navbars extend
+               the width
+               of the viewport, others are confined within a
+               <code>.container</code>. For positioning of navbars, checkout the
+               <a href="../navbar-static/">top</a> and
+               <a href="../navbar-fixed/">fixed top</a> examples.</p>
+            <p>At the smallest breakpoint, the collapse plugin is used to hide the links and show a menu button to
+               toggle
+               the collapsed
+               content.
+            </p>
+            <p>
+               <a class="btn btn-primary" href="../../components/navbar/" role="button">View navbar docs &raquo;</a>
+            </p>
+         </div>
+      </div>
+   </main> --}}
+
+   <!-- Need to be before the body, so the datable load -->
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+   <script>window.jQuery || document.write('<script src="/javascripts/jquery-slim.min.js"><\/script>')</script>
+   {{{body}}}
+
+
+   <!-- Bootstrap core JavaScript
+    ================================================== -->
+   <!-- Placed at the end of the document so the pages load faster -->
+   <script src="/javascripts/popper.min.js"></script>
+   <script src="/javascripts/bootstrap.min.js"></script>
+</body>
+
+</html>

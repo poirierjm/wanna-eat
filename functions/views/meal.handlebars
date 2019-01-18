@@ -1,0 +1,73 @@
+<div class="container">
+
+  <h2 class="mt-5">Add new meal</h2>
+  <hr class="divider">
+
+  <form class="needs-validation" action="/create-meal" method="post" enctype="multipart/form-data" novalidate>
+    <div class="row">
+      <div class="col-sm-8 mb-3">
+        <label for="name">Nom</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Spaghetti" value="" required>
+        <div class="invalid-feedback">
+          Valid name is required.
+        </div>
+      </div>
+      <div class="col-sm-2 mb-3">
+        <label for="portion">Portion left</label>
+        <input type="number" class="form-control" id="portion" name="portion" placeholder="" required>
+        <div class="invalid-feedback">
+          Valid number of portion is required.
+        </div>
+      </div>
+      <div class="col-sm-2 mb-3">
+        <label for="price">Price</label>
+        <input type="number" step="0.01" class="form-control" id="price" name="price" placeholder="" required>
+        <div class="invalid-feedback">
+          Valid price is required.
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="description">Description</label>
+      <textarea class="form-control" rows="5" id="description" name="description" placeholder="Spaghetti boulettes à la viande" aria-describedby="descriptionHelp"></textarea>
+      <small id="descriptionHelp" class="form-text text-muted">Max characters: 250</small>
+      <div class="invalid-feedback">
+        Please enter a valid description.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="mealImage">Image</label>
+      <input type="file" class="form-control-file" id="mealImage" name="mealImage" aria-describedby="fileHelp" required>
+      <small id="fileHelp" class="form-text text-muted">Width: 400px | Height: 272px</small>
+      <div class="invalid-feedback">
+        Please upload an image.
+      </div>
+    </div>
+
+    <button class="btn btn-success btn-lg float-right my-3" type="submit">Add meal</button>
+  </form>
+
+</div>
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    'use strict';
+
+    window.addEventListener('load', function () {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+</script>

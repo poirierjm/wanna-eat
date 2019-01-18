@@ -1,0 +1,46 @@
+<div class="form-signin">
+   <form>
+      <h2 class="h3 mb-3 font-weight-normal">Connectez-vous</h2>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <div class="checkbox mb-3">
+         <label>
+            <input type="checkbox" value="remember-me"> Remember me
+         </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
+   </form>
+   <hr>
+   <a role="button" href="/signup" class="btn btn-lg btn-light btn-block">Inscription</a>
+   <p class="mt-4 text-muted text-center">Ou</p>
+   <hr>
+   <h2 class="h3 mt-4 mb-3 font-weight-normal">Connectez-vous avec Google</h2>
+   <button class="btn btn-lg btn-google btn-block text-uppercase" onclick="googleSignIn()">Google+</button>
+</div>
+
+
+<script>
+   function googleSignIn() {
+      firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(function (result) {
+         var credential = firebase.auth.GoogleAuthProvider.credential(
+            googleUser.getAuthResponse().id_token);
+         firebase.auth().currentUser.linkAndRetrieveDataWithCredential(credential).then(function (usercred) {
+            var user = usercred.user;
+            console.log("Anonymous account successfully upgraded", user);
+         }, function (error) {
+            console.log("Error upgrading anonymous account", error);
+         });
+         // ...
+      }).catch(function (error) {
+         // Handle Errors here.
+         var errorCode = error.code;
+         var errorMessage = error.message;
+         // The email of the user's account used.
+         var email = error.email;
+         // The firebase.auth.AuthCredential type that was used.
+         var credential = error.credential;
+      });
+   }
+</script>

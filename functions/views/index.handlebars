@@ -1,0 +1,19 @@
+<link href="/stylesheets/index.css" rel="stylesheet">
+
+<div class="background"></div>
+
+<div class="container-address">
+   <div class="input-group my-auto">
+      <label class="sr-only" for="address">Address</label>
+      <input type="text" id="address" style="height: 50px;" class="form-control" placeholder="Entrez votre adresse" onkeyup="changeAddress()">
+      <a href="/map/Montreal" id="summit" class="btn btn-success ml-2" style="height: 50px; padding-top:12px;" role="button">Go!</a>
+   </div>
+</div>
+
+<script>
+   function changeAddress() {
+      var address = document.getElementById('address').value;
+      var link = document.getElementById("summit").href = "/map/" + address;
+      return link;
+   }
+</script>
